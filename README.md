@@ -19,12 +19,16 @@ Complete Arch Linux configuration with automated installation for a beautiful Hy
 ## 📦 Included Configurations
 
 ### Window Manager & Compositor
-- **Hyprland**: Main configuration with modular setup
+- **Hyprland**: Main configuration with modular setup (Linux)
   - Animations and transitions
   - Window rules and workspace management
   - Keybindings and shortcuts
   - Monitor configuration
   - NVIDIA GPU support
+- **AeroSpace**: macOS tiling window manager with Hyprland-inspired keybindings
+  - Consistent keyboard shortcuts across platforms
+  - Workspace management and window tiling
+  - Similar gap configuration to Hyprland
 
 ### Status Bar & UI
 - **Waybar**: Interactive status bar with Nerd Font icons and click-to-open controls
@@ -117,6 +121,40 @@ The script automatically:
 ### NVIDIA Support
 Automatically detects and installs NVIDIA drivers if GPU is detected.
 
+## 🍎 macOS Setup (AeroSpace)
+
+For macOS users, you can use the AeroSpace tiling window manager with similar keybindings:
+
+### Prerequisites
+1. Install [AeroSpace](https://github.com/nikitabobko/AeroSpace) via Homebrew:
+   ```bash
+   brew install --cask nikitabobko-aerospace
+   ```
+
+### Installation
+```bash
+# Clone the repository
+git clone https://github.com/hedversecorp/hyprlab.git
+cd hyprlab
+
+# Symlink AeroSpace configuration
+ln -sf ~/hyprlab/.aerospace.toml ~/.aerospace.toml
+
+# Switch Cmd and Option keys in macOS System Settings
+# Go to: System Settings > Keyboard > Keyboard Shortcuts > Modifier Keys
+# Set: Command Key (⌘) → Option
+# Set: Option Key (⌥) → Command
+
+# Restart AeroSpace to apply configuration
+aerospace reload-config
+```
+
+### Features
+- Hyprland-inspired keybindings adapted for macOS (Cmd instead of Super)
+- Similar gap configuration and tiling behavior
+- Workspace management (1-10 workspaces)
+- Window focus, movement, and resizing
+
 ## 🔧 Manual Installation
 
 <details>
@@ -164,7 +202,7 @@ After running the setup script:
 ```
 hyprlab/
 ├── config/
-│   ├── hypr/           # Hyprland configuration
+│   ├── hypr/           # Hyprland configuration (Linux)
 │   ├── kitty/          # Terminal emulator  
 │   ├── nvim/           # Neovim IDE setup
 │   ├── waybar/         # Status bar
@@ -172,6 +210,7 @@ hyprlab/
 │   ├── mako/           # Notification daemon
 │   ├── scripts/        # System control menus and utilities
 │   └── assets/         # Wallpapers and resources
+├── .aerospace.toml     # AeroSpace configuration (macOS)
 ├── zshrc               # Zsh configuration
 ├── p10k.zsh            # Powerlevel10k theme
 ├── setup.sh            # Automated installation script
@@ -180,6 +219,7 @@ hyprlab/
 
 ## ⌨️ Default Keybindings
 
+### Linux (Hyprland)
 | Key Combination | Action |
 |-----------------|--------|
 | `Super + Q` | Close window |
@@ -189,6 +229,21 @@ hyprlab/
 | `Super + L` | Lock screen |
 | `Super + 1-9` | Switch to workspace 1-9 |
 | `Super + Shift + 1-9` | Move window to workspace 1-9 |
+
+### macOS (AeroSpace)
+| Key Combination | Action |
+|-----------------|--------|
+| `Option(⌥) + Left/Right/Up/Down` | Focus window in direction |
+| `Option(⌥) + Shift + Left/Right/Up/Down` | Move window in direction |
+| `Option(⌥) + Shift + Alt + Left/Right/Up/Down` | Resize window |
+| `Option(⌥) + 1-9,0` | Switch to workspace 1-10 |
+| `Option(⌥) + Shift + 1-9,0` | Move window to workspace 1-10 |
+| `Option(⌥) + Tab` | Switch between recent workspaces |
+| `Option(⌥) + F` | Toggle fullscreen |
+| `Option(⌥) + Shift + V` | Toggle floating/tiling |
+| `Option(⌥) + Shift + R` | Reload AeroSpace config |
+
+*Note: These keybindings work after switching the Cmd and Option keys in macOS System Settings as shown in the installation steps above.*
 
 ## 📱 Waybar Features
 
